@@ -1,0 +1,78 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 240 6% 5%;
+    --foreground: 0 0% 95%;
+    --card: 240 5% 8%;
+    --card-foreground: 0 0% 95%;
+    --border: 240 5% 14%;
+    --primary: 0 0% 95%;
+    --primary-foreground: 0 0% 5%;
+    --muted: 240 5% 11%;
+    --muted-foreground: 240 5% 63%;
+  }
+
+  body {
+    @apply bg-[#0B0B0C] text-[#F3F3F3] antialiased selection:bg-white/20 selection:text-white;
+    font-feature-settings: "ss01", "ss02", "cv01";
+  }
+}
+
+@layer components {
+
+  /* Dark glassmorphism */
+  .high-end-glass {
+    background: rgba(20, 20, 24, 0.8);
+    backdrop-filter: blur(24px);
+    border: 1px solid #232327;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  }
+
+  /* Premium card dark */
+  .premium-card {
+    @apply bg-[#141418] border border-[#232327] rounded-2xl p-8 transition-all duration-500;
+  }
+
+  .premium-card:hover {
+    border-color: #2e2e35;
+    transform: translateY(-2px);
+  }
+
+  .serif-title {
+    @apply font-serif tracking-tight leading-tight;
+  }
+
+  /* Badge */
+  .badge-pending {
+    @apply bg-amber-900/40 text-amber-400 border border-amber-700/40;
+  }
+
+  .badge-paid {
+    @apply bg-green-900/40 text-green-400 border border-green-700/40;
+  }
+
+  .badge-overdue {
+    @apply bg-red-900/40 text-red-400 border border-red-700/40;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #232327;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #2e2e35;
+}
