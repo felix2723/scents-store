@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect, useCallback, Suspense } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { createClient } from '@/lib/supabase'
 import { TrendingUp, Package, AlertCircle, DollarSign, Users, Loader2, Receipt } from 'lucide-react'
@@ -39,7 +39,7 @@ const RANGE_OPTIONS: { key: Range; label: string }[] = [
     { key: 'all', label: 'Total' },
 ]
 
-export default function DashboardPage() {
+function DashboardContent() {
     const searchParams = useSearchParams()
     const router = useRouter()
     const [range, setRange] = useState<Range>((searchParams.get('range') as Range) || 'month')
@@ -323,5 +323,13 @@ export default function DashboardPage() {
                 </>
             )}
         </div>
+    )
+}
+
+export default function DashboardPage() {
+    return (
+        <Suspense fallback={<div className="h-screen flex items-center justify-center"><Loader2 className="animate-spin h-8 w-8 text-[#F3F3F3]" /></div>}>
+            <DashboardContent />
+        </Suspense>
     )
 }
