@@ -33,7 +33,7 @@
 
   /* Premium card dark */
   .premium-card {
-    @apply bg-[#141418] border border-[#232327] rounded-2xl p-8 transition-all duration-500;
+    @apply bg-[#141418] border border-[#232327] rounded-2xl p-4 sm:p-6 md:p-8 transition-all duration-500;
   }
 
   .premium-card:hover {

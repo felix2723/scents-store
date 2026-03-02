@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
 import {
     LayoutDashboard, Package, History, ShoppingBag, BarChart3,
-    Settings, LogOut, CreditCard, Wallet, Receipt, SlidersHorizontal, LineChart, ClipboardList
+    Settings, LogOut, CreditCard, Wallet, Receipt, SlidersHorizontal, LineChart, ClipboardList, X
 } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { createClient } from '@/lib/supabase'
@@ -25,7 +25,12 @@ const navigation = [
     { name: 'Configuración', href: '/settings', icon: Settings },
 ]
 
-export function Sidebar() {
+interface SidebarProps {
+    mobileOpen?: boolean
+    onMobileClose?: () => void
+}
+
+export function Sidebar({ mobileOpen = false, onMobileClose }: SidebarProps) {
     const pathname = usePathname()
     const router = useRouter()
     const supabase = createClient()
@@ -35,7 +40,7 @@ export function Sidebar() {
         router.push('/login')
     }
 
-    return (
+    const SidebarContent = () => (
         <div className="flex h-full w-64 flex-col bg-[#0E0E10] border-r border-[#232327]">
             {/* Logo */}
             <div className="flex h-20 items-center px-5 border-b border-[#232327] gap-3">
@@ -46,6 +51,12 @@ export function Sidebar() {
                     <p className="font-serif text-sm font-light text-[#F3F3F3] tracking-widest uppercase">Scents</p>
                     <p className="text-[10px] text-[#A0A0A8] tracking-[0.3em] uppercase">Store Manager</p>
                 </div>
+                {/* Close button — only on mobile drawer */}
+                {onMobileClose && (
+                    <button onClick={onMobileClose} className="ml-auto text-[#A0A0A8] hover:text-[#F3F3F3] transition-colors md:hidden">
+                        <X className="h-5 w-5" />
+                    </button>
+                )}
             </div>
 
             <nav className="flex-1 space-y-0.5 px-3 py-4 overflow-y-auto">
@@ -53,6 +64,7 @@ export function Sidebar() {
                     const isActive = pathname === item.href || (item.href !== '/sales' && pathname.startsWith(item.href + '/'))
                     return (
                         <Link key={item.name} href={item.href}
+                            onClick={onMobileClose}
                             className={cn(
                                 "group flex items-center rounded-lg px-3 py-2.5 text-sm font-medium transition-all duration-200",
                                 isActive
@@ -76,5 +88,29 @@ export function Sidebar() {
                 </button>
             </div>
         </div>
+    )
+
+    return (
+        <>
+            {/* Desktop sidebar — always visible on md+ */}
+            <div className="hidden md:flex h-full">
+                <SidebarContent />
+            </div>
+
+            {/* Mobile drawer overlay */}
+            {mobileOpen && (
+                <div className="fixed inset-0 z-50 md:hidden">
+                    {/* Backdrop */}
+                    <div
+                        className="absolute inset-0 bg-black/60 backdrop-blur-sm"
+                        onClick={onMobileClose}
+                    />
+                    {/* Drawer panel */}
+                    <div className="absolute left-0 top-0 h-full animate-in slide-in-from-left duration-300">
+                        <SidebarContent />
+                    </div>
+                </div>
+            )}
+        </>
     )
 }

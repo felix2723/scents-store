@@ -200,17 +200,17 @@ function DashboardContent() {
     const maxTrend = Math.max(...salesTrend.map(d => d.amount), 1)
 
     return (
-        <div className="space-y-10 animate-in fade-in duration-700">
-            <header className="flex items-end justify-between gap-4 flex-wrap">
+        <div className="space-y-6 md:space-y-10 animate-in fade-in duration-700">
+            <header className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
                 <div>
-                    <h1 className="serif-title text-5xl font-light text-[#F3F3F3]">Resumen Ejecutivo</h1>
-                    <p className="mt-3 text-lg text-[#A0A0A8]">Monitoreo en tiempo real de Scents Store.</p>
+                    <h1 className="serif-title text-3xl md:text-5xl font-light text-[#F3F3F3]">Resumen Ejecutivo</h1>
+                    <p className="mt-2 md:mt-3 text-sm md:text-lg text-[#A0A0A8]">Monitoreo en tiempo real de Scents Store.</p>
                 </div>
                 {/* Range Selector */}
-                <div className="flex gap-1 bg-[#141418] border border-[#232327] rounded-xl p-1">
+                <div className="flex gap-1 bg-[#141418] border border-[#232327] rounded-xl p-1 self-start sm:self-auto">
                     {RANGE_OPTIONS.map(o => (
                         <button key={o.key} onClick={() => handleRange(o.key)}
-                            className={cn("px-4 py-2 rounded-lg text-xs font-bold uppercase tracking-wide transition-all",
+                            className={cn("px-3 py-1.5 md:px-4 md:py-2 rounded-lg text-xs font-bold uppercase tracking-wide transition-all",
                                 range === o.key
                                     ? "bg-white/10 text-[#F3F3F3]"
                                     : "text-[#A0A0A8] hover:text-[#F3F3F3]"

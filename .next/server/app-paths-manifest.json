@@ -1,9 +1,18 @@
 {
-  "/(dashboard)/sales/history/page": "app/(dashboard)/sales/history/page.js",
-  "/(dashboard)/reports/page": "app/(dashboard)/reports/page.js",
-  "/(dashboard)/inventory/page": "app/(dashboard)/inventory/page.js",
-  "/(dashboard)/products/page": "app/(dashboard)/products/page.js",
-  "/(dashboard)/sales/page": "app/(dashboard)/sales/page.js",
+  "/_not-found/page": "app/_not-found/page.js",
+  "/(auth)/login/page": "app/(auth)/login/page.js",
+  "/page": "app/page.js",
+  "/(dashboard)/credits/page": "app/(dashboard)/credits/page.js",
+  "/(dashboard)/dashboard/page": "app/(dashboard)/dashboard/page.js",
+  "/(dashboard)/finance/page": "app/(dashboard)/finance/page.js",
+  "/(dashboard)/expenses/page": "app/(dashboard)/expenses/page.js",
   "/(dashboard)/adjustments/page": "app/(dashboard)/adjustments/page.js",
-  "/(dashboard)/dashboard/page": "app/(dashboard)/dashboard/page.js"
+  "/(dashboard)/inventory/page": "app/(dashboard)/inventory/page.js",
+  "/(dashboard)/products/[id]/movements/page": "app/(dashboard)/products/[id]/movements/page.js",
+  "/(dashboard)/products/page": "app/(dashboard)/products/page.js",
+  "/(dashboard)/reports/page": "app/(dashboard)/reports/page.js",
+  "/(dashboard)/sales/history/page": "app/(dashboard)/sales/history/page.js",
+  "/(dashboard)/settings/page": "app/(dashboard)/settings/page.js",
+  "/(dashboard)/sales/page": "app/(dashboard)/sales/page.js",
+  "/(dashboard)/wallet/page": "app/(dashboard)/wallet/page.js"
 }
